@@ -36,7 +36,12 @@
 	# What was the name of the function we have seen to check the length of a container?  Use your CLI to access the Python documentation and get help(len).
 
 def one(input1, input2):
-	return ""
+	if len(input1) > len(input2):
+		return input1
+	elif len(input2) > len(input1):
+		return input2
+	else:
+		return f"{input1} {input2}"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 
@@ -60,7 +65,14 @@ def one(input1, input2):
 	# No hints for this question
 
 def two(arg1):
-	return "null"
+	if arg1 % 3 == 0 and arg1 % 5 == 0:
+		return "fizzbuzz"
+	elif arg1 % 3 == 0:
+		return "fizz"
+	elif arg1 % 5 == 0:
+		return "buzz"
+	else:
+		return "null"
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 
@@ -79,7 +91,14 @@ def two(arg1):
 	# How do we ignore case in a String? help(str) may offer some insight.
 
 def three(input):
-    return 0
+	lower = input.lower()
+	vowels = ['a', 'e', 'i', 'o', 'u']
+	count = 0
+	for character in lower:
+		if character in vowels:
+			count += 1
+	return count
+   
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 
@@ -102,7 +121,14 @@ def three(input):
 
 
 def four(input):
-    return False
+	if 'cie' in input:
+		return False
+	elif 'cei' in input:
+		return True
+	elif 'ie' in input:
+		return True
+	elif 'ei' in input:
+		return False
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 
@@ -122,7 +148,14 @@ def four(input):
 	# You may need to create a list of numbers from 0 to i, take a look at help(range).
 
 def five(input):
-	return 1
+	list = []
+	for x in range (1, input+1):
+		list.append(x)
+	result = 1
+	for i in list:
+		result = result * i
+	return result
+
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 
@@ -144,7 +177,21 @@ def five(input):
 	# How do we find the length of a container, take a look at help(len), you will also need to look at help(str) for String manipulation.
  
 def six(string, int, char):
-	return False
+	l_string = string.lower()
+	l_char = char.lower()
+	string_list = []
+	for character in l_string:
+		# if the tests had whitespace, I would do 
+		# if character != " " above this line
+			string_list.append(character)
+	if int >= len(string_list):
+		return False
+	elif string_list[int-1] == l_char:
+		return True
+	else:
+		return False
+
+
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 
@@ -167,7 +214,14 @@ def six(string, int, char):
 	# Take a look at the documentation for Strings, List and range.
 
 def seven(inputString, char):
-	return -1
+	string_list = []
+	for character in inputString:
+		if character != " ":
+			string_list.append(character)
+	if char in string_list:
+		return string_list.index(char) + 1
+	else:
+		return -1
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 
@@ -194,7 +248,16 @@ def seven(inputString, char):
 	# help(int) for working with numbers and help(str) for working with Strings.
 
 def eight(arg1):
-	return 0
+	split = arg1.split()
+	highest = 0
+	for i in range(len(split)):
+		new_list = []
+		for x in split[i]:
+			new_list.append(int(x))
+		num = sum(new_list)
+		if num > highest:
+			highest = num
+	return highest
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 
@@ -221,7 +284,12 @@ def eight(arg1):
 	# Use your CLI to access the Python documentation and get help manipulating strings - help(str).
 
 def nine(input):
-	return ""
+	lower = input.lower()
+	split_bert = lower.split('bert')
+	if len(split_bert) == 2:
+		return ""
+	else:
+		return split_bert[1]
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 
@@ -251,7 +319,27 @@ def nine(input):
 	# help(str) and help(list), you might also need to use a function that can create a list of numbers for you, try help(range).
 
 def ten(input):
-	return []
+	answer = []
+	if 'False' not in input:
+		return []
+	new_list = input.split(',')
+	for i in range(1, len(new_list), 4):
+		answer_list = []
+		answer_list.append(new_list[i-1])
+		answer_list.append(new_list[i])
+		answer_list.append(new_list[i+1])
+		answer_list.append(new_list[i+2])
+		if 'False' in answer_list:
+				answer.append(new_list[i-1])
+		set_conv = set(answer)
+		list_conv = list(set_conv)
+	return list_conv
+
+
+print(ten("Jeff,random.py,False,1445"))
+print(ten("Bert,numberGen.py,True,1447,Bert,integers.py,True,1318,Jeff,floats.py,False,1445"))
+print(ten("Bert,prime.py,True,1447,Bert,ISBN.py,False,1318,Jeff,OOP.py,False,1445"))
+print(ten("Bert,boolean.py,False,1447,Bert,conditions.py,False,1318,Jeff,loops.py,False,1445"))
 
 #------------------------------------------------------------------------------------------------------------------------------------------------------------------ 
 
